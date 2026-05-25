@@ -1,0 +1,1477 @@
+    /* ==UserStyle==
+@name           YouTube Deep Noir Bordeaux
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    Тёмно-фиолетовая тема с бордовыми акцентами для YouTube
+@author         YourName
+==/UserStyle== */
+@-moz-document domain("youtube.com") {
+    /* =========================================
+   ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ (переопределяем цвета YouTube)
+   ========================================= */
+    :root {
+        --ytd-searchbox-background: transparent !important;
+        /* Основные цвета фона и текста */
+        --yt-sys-color-baseline--base-background: #0a0a0f !important;
+        --yt-sys-color-baseline--raised-background: #12101a !important;
+        --yt-sys-color-baseline--menu-background: #1a1522 !important;
+        --yt-sys-color-baseline--text-primary: #e0e0f0 !important;
+        --yt-sys-color-baseline--text-secondary: #b0b0c0 !important;
+        --yt-sys-color-baseline--text-disabled: #6a5a7a !important;
+        --yt-sys-color-baseline--outline: rgba(155, 29, 44, 0.3) !important;
+        --yt-sys-color-baseline--outline-inverse: rgba(155, 29, 44, 0.2) !important;
+
+        /* Акцентный цвет (бордовый) */
+        --yt-sys-color-baseline--call-to-action: #9b1d2c !important;
+        --yt-sys-color-baseline--call-to-action-hover: #b82e3f !important;
+        --yt-sys-color-baseline--call-to-action-inverse: #7a1522 !important;
+
+        /* Цвета кнопок и иконок */
+        --yt-sys-color-baseline--overlay-button-primary: rgba(155, 29, 44, 0.5) !important;
+        --yt-sys-color-baseline--overlay-button-secondary: rgba(155, 29, 44, 0.2) !important;
+        --yt-sys-color-baseline--button-chip-background-hover: rgba(155, 29, 44, 0.3) !important;
+
+        /* Цвета ошибок и предупреждений (оставим стандартные, но можно и бордовые) */
+        --yt-sys-color-baseline--error-indicator: #c1273b !important;
+        --yt-sys-color-baseline--text-error: #ff8a9f !important;
+
+        /* Скроллбары */
+        --yt-sys-color-baseline--outline-rim: rgba(155, 29, 44, 0.4) !important;
+
+        /* Тени */
+        --yt-sys-color-baseline--shadow-medium: rgba(0, 0, 0, 0.6) !important;
+
+        /* Дополнительные переменные для совместимости */
+        --primary-text-color: #e0e0f0 !important;
+        --secondary-text-color: #b0b0c0 !important;
+        --paper-tooltip-background: #1e1828 !important;
+        --paper-tooltip-text-color: #e0e0f0 !important;
+
+        /* Отключаем тень текста, если она была (можно оставить для читаемости) */
+        text-shadow: none !important;
+    }
+
+    /* =========================================
+   ОСНОВНЫЕ ЭЛЕМЕНТЫ СТРАНИЦЫ
+   ========================================= */
+    /* Общий фон */
+    html,
+    body,
+    ytd-app {
+        background-color: #0a0a0f !important;
+    }
+
+    /* Левая боковая панель (навигация) */
+    ytd-guide-renderer,
+    #guide-renderer,
+    #sections {
+        background-color: #0f0d15 !important;
+        border-right: 1px solid #2a1f2a !important;
+    }
+
+    /* Элементы навигации (пункты меню) */
+    ytd-guide-entry-renderer a,
+    ytd-guide-entry-renderer .yt-simple-endpoint,
+    ytd-guide-section-renderer .yt-simple-endpoint {
+        color: #d0d0e0 !important;
+    }
+    ytd-guide-entry-renderer:hover,
+    ytd-guide-entry-renderer:focus {
+        background-color: #1e1828 !important;
+    }
+
+    /* Активный пункт меню (выделенный) */
+    ytd-guide-entry-renderer.ytd-guide-section-renderer[selected],
+    ytd-guide-entry-renderer[aria-current="page"] {
+        background-color: #2a1a2a !important;
+        border-left: 3px solid #9b1d2c !important;
+    }
+
+    /* Шапка (masthead) */
+    ytd-masthead {
+        background-color: #0a0a0f !important;
+        border-bottom: 1px solid #2a1f2a !important;
+    }
+
+    /* Поле поиска */
+    #search-input,
+    .ytd-searchbox {
+        background-color: #12101a !important;
+        border: 1px solid #2a1f2a !important;
+        border-radius: 24px !important;
+        color: #e0e0f0 !important;
+    }
+    #search-input:focus,
+    .ytd-searchbox:focus-within {
+        border-color: #9b1d2c !important;
+        box-shadow: 0 0 0 2px rgba(155, 29, 44, 0.3) !important;
+    }
+
+    /* Кнопка поиска */
+    #search-icon-legacy,
+    .ytd-searchbox .search-button {
+        background: transparent !important;
+        color: #b0b0c0 !important;
+    }
+    #search-icon-legacy:hover,
+    .ytd-searchbox .search-button:hover {
+        background-color: #1e1828 !important;
+        color: #ffffff !important;
+    }
+
+    /* Иконки в шапке (колокольчик, аватар и т.д.) */
+    ytd-masthead .yt-icon-button,
+    yt-icon-button#guide-button {
+        color: #b0b0c0 !important;
+    }
+    ytd-masthead .yt-icon-button:hover,
+    yt-icon-button#guide-button:hover {
+        background-color: #1e1828 !important;
+        color: #ffffff !important;
+    }
+
+    /* =========================================
+   ЛЕНТА ВИДЕО (главная страница)
+   ========================================= */
+    /* Карточка видео (общий блок) */
+    ytd-rich-item-renderer {
+        background: transparent !important;
+        transition: transform 0.2s, box-shadow 0.2s !important;
+    }
+    ytd-rich-item-renderer:hover {
+        transform: translateY(-4px) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
+        background: #1e1828 !important;
+        border-radius: 16px !important;
+    }
+
+    /* Название видео */
+    #video-title,
+    .ytd-rich-grid-media .yt-formatted-string {
+        color: #e0e0f0 !important;
+    }
+    #video-title:hover {
+        color: #9b1d2c !important;
+    }
+
+    /* Имя канала */
+    #channel-name a,
+    #text-container a {
+        color: #b0b0c0 !important;
+    }
+    #channel-name a:hover {
+        color: #e06c7e !important;
+    }
+
+    /* Длительность видео, просмотры, дата */
+    #metadata-line span,
+    #metadata-line yt-formatted-string,
+    #video-info span,
+    #video-info yt-formatted-string {
+        color: #8a8090 !important;
+    }
+
+    /* Аватар канала */
+    yt-img-shadow.ytd-channel-avatar {
+        border-radius: 50%;
+        filter: brightness(0.9);
+    }
+
+    /* Кнопка меню (три точки) на карточке */
+    #button yt-icon,
+    .ytd-menu-renderer yt-icon {
+        color: #b0b0c0 !important;
+    }
+    #button:hover yt-icon,
+    .ytd-menu-renderer:hover yt-icon {
+        color: #ffffff !important;
+    }
+
+    /* =========================================
+   САЙДБАР СПРАВА (рекомендации)
+   ========================================= */
+    ytd-compact-video-renderer,
+    ytd-compact-radio-renderer {
+        background: transparent !important;
+    }
+    ytd-compact-video-renderer:hover,
+    ytd-compact-radio-renderer:hover {
+        background: #1e1828 !important;
+        border-radius: 12px !important;
+    }
+
+    /* =========================================
+   ПЛЕЕР (страница просмотра видео)
+   ========================================= */
+    .html5-video-player {
+        --ytp-swatch-background-color: #9b1d2c !important;
+        --ytp-swatch-color: #9b1d2c !important;
+        --ytp-swatch-text-color: #ffffff !important;
+    }
+
+    /* Кнопки под видео (лайк, дизлайк, поделиться и т.д.) */
+    ytd-segmented-like-dislike-button-renderer,
+    ytd-toggle-button-renderer,
+    ytd-button-renderer {
+        background: transparent !important;
+    }
+    ytd-toggle-button-renderer:hover,
+    ytd-button-renderer:hover {
+        background-color: #1e1828 !important;
+        border-radius: 20px !important;
+    }
+
+    /* Кнопка "Подписаться" */
+    ytd-subscribe-button-renderer button {
+        background-color: #9b1d2c !important;
+        border: none !important;
+        color: white !important;
+        border-radius: 20px !important;
+        transition: all 0.2s !important;
+    }
+    ytd-subscribe-button-renderer button:hover {
+        background-color: #b82e3f !important;
+        transform: scale(1.02);
+    }
+
+    /* Комментарии */
+    ytd-comment-thread-renderer,
+    ytd-comment-renderer {
+        background: transparent !important;
+    }
+    ytd-comment-thread-renderer:hover,
+    ytd-comment-renderer:hover {
+        background: #1e1828 !important;
+    }
+    #author-text,
+    #header-author a {
+        color: #e0e0f0 !important;
+    }
+    #content-text,
+    yt-formatted-string#content-text {
+        color: #d0d0e0 !important;
+    }
+
+    /* =========================================
+   КНОПКИ, ИКОНКИ, ПАНЕЛИ
+   ========================================= */
+    /* Общие кнопки */
+    button,
+    .yt-spec-button-shape-next {
+        transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1) !important;
+    }
+    button:hover,
+    .yt-spec-button-shape-next:hover {
+        filter: brightness(1.1);
+        transform: translateY(-1px);
+    }
+    button:active,
+    .yt-spec-button-shape-next:active {
+        transform: translateY(1px);
+    }
+
+    /* Скроллбары (для всей страницы) */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #0a0a0f;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #2a1f2a;
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #9b1d2c;
+    }
+
+    /* Панель "Ещё" (меню под видео) */
+    ytd-menu-popup-renderer {
+        background: #1e1828 !important;
+        border: 1px solid #2a1f2a !important;
+        border-radius: 12px !important;
+    }
+    ytd-menu-service-item-renderer {
+        color: #e0e0f0 !important;
+    }
+    ytd-menu-service-item-renderer:hover {
+        background: #2a2038 !important;
+    }
+
+    /* =========================================
+   ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ И АНИМАЦИИ
+   ========================================= */
+    /* Плавное появление карточек */
+    ytd-rich-item-renderer {
+        animation: fadeSlideUp 0.3s ease-out;
+    }
+    @keyframes fadeSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Анимация при наведении на кнопку "Подписаться" */
+    ytd-subscribe-button-renderer button {
+        transition: transform 0.2s, background 0.2s, box-shadow 0.2s !important;
+    }
+    ytd-subscribe-button-renderer button:hover {
+        transform: scale(1.03);
+        box-shadow: 0 2px 8px rgba(155, 29, 44, 0.4);
+    }
+
+    /* Пульсация для иконки "лайк" при клике */
+    ytd-toggle-button-renderer[like-button]:active yt-icon {
+        animation: pulse 0.2s ease;
+    }
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.2);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* =========================================
+   УБИРАЕМ НЕКОТОРЫЕ СТАНДАРТНЫЕ ФОНЫ
+   ========================================= */
+    ytd-rich-grid-renderer,
+    ytd-two-column-browse-results-renderer,
+    ytd-section-list-renderer,
+    #primary,
+    #secondary {
+        background: transparent !important;
+    }
+
+    /* Отключаем стандартную тень текста (если она мешает) */
+    body,
+    .yt-simple-endpoint,
+    .yt-formatted-string {
+        text-shadow: none !important;
+    }
+
+    /* =========================================
+   УЛУЧШЕНИЯ: ГРАДИЕНТЫ, АНИМАЦИИ, ЭФФЕКТЫ
+   ========================================= */
+    /* 1. Активный пункт меню (левая панель) – градиентная рамка */
+    ytd-guide-entry-renderer[selected],
+    ytd-guide-entry-renderer[aria-current="page"] {
+        background: linear-gradient(90deg, #2a1a2a, transparent) !important;
+        border-left: 3px solid transparent !important;
+        border-image: linear-gradient(135deg, #7a1522, #9b1d2c, #b82e3f) 1 !important;
+        border-image-slice: 1 !important;
+    }
+
+    /* 2. Анимация появления ленты видео (более плавная) */
+    ytd-rich-item-renderer {
+        animation: slideUpFade 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    @keyframes slideUpFade {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* 3. Эффект свечения для карточек при наведении */
+    ytd-rich-item-renderer:hover {
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(155, 29, 44, 0.3);
+        transition: all 0.25s ease;
+    }
+
+    /* 4. Пульсация для иконки лайка при клике (улучшенная) */
+    ytd-toggle-button-renderer[like-button]:active yt-icon,
+    ytd-toggle-button-renderer[dislike-button]:active yt-icon {
+        animation: likePulse 0.2s cubic-bezier(0.2, 1.2, 0.4, 1);
+    }
+    @keyframes likePulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.3);
+            color: #9b1d2c;
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* 5. Кастомный скроллбар для комментариев (более тонкий) */
+    #comments #contents {
+        scrollbar-width: thin;
+        scrollbar-color: #9b1d2c #2a1f2a;
+    }
+    #comments #contents::-webkit-scrollbar {
+        width: 8px;
+    }
+    #comments #contents::-webkit-scrollbar-track {
+        background: #1e1828;
+        border-radius: 10px;
+    }
+    #comments #contents::-webkit-scrollbar-thumb {
+        background: #7a1522;
+        border-radius: 10px;
+    }
+    #comments #contents::-webkit-scrollbar-thumb:hover {
+        background: #9b1d2c;
+    }
+
+    /* 6. Полоса прогресса видео (бордовая) */
+    .ytp-play-progress {
+        background-color: #9b1d2c !important;
+    }
+    .ytp-scrubber-button {
+        background-color: #b82e3f !important;
+    }
+    .ytp-scrubber-button:hover {
+        background-color: #c1273b !important;
+        transform: scale(1.2);
+    }
+
+    /* 7. Эффект при наведении на кнопку "Подписаться" – лёгкое вращение */
+    ytd-subscribe-button-renderer button:hover {
+        transform: scale(1.03) rotate(0.5deg);
+        box-shadow: 0 0 8px rgba(155, 29, 44, 0.6);
+    }
+    ytd-subscribe-button-renderer button:active {
+        transform: scale(0.98);
+    }
+
+    /* 8. Анимация для блока комментариев (появление при скролле) */
+    ytd-comment-thread-renderer {
+        animation: fadeInLeft 0.3s ease;
+    }
+    @keyframes fadeInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* 9. Подсветка ссылок в комментариях (бордовым) */
+    #content-text a,
+    .yt-formatted-string a {
+        color: #e06c7e !important;
+        border-bottom: 1px dashed #9b1d2c;
+        transition: all 0.2s;
+    }
+    #content-text a:hover,
+    .yt-formatted-string a:hover {
+        color: #ff8a9f !important;
+        border-bottom-style: solid;
+    }
+
+    /* 10. Затемнение фона плеера (полноэкранный режим) */
+    .html5-video-player:fullscreen {
+        background-color: #0a0a0f !important;
+    }
+    .ytp-gradient-top,
+    .ytp-gradient-bottom {
+        background: linear-gradient(transparent, #0a0a0f) !important;
+    }
+
+    /* 11. Плавное изменение цвета кнопок навигации (верхнее меню) */
+    ytd-guide-entry-renderer a,
+    ytd-guide-entry-renderer .yt-simple-endpoint {
+        transition: color 0.2s, background 0.2s;
+    }
+    ytd-guide-entry-renderer:hover a,
+    ytd-guide-entry-renderer:hover .yt-simple-endpoint {
+        color: #9b1d2c !important;
+    }
+
+    /* 12. Убираем белый фон у всплывающих подсказок (tooltip) */
+    tp-yt-paper-tooltip .paper-tooltip,
+    tp-yt-paper-tooltip #tooltip {
+        background-color: #1e1828 !important;
+        border: 1px solid #9b1d2c !important;
+        color: #e0e0f0 !important;
+        font-size: 12px;
+        border-radius: 8px;
+    }
+
+    /* 13. Добавляем тень для карточек Shorts */
+    ytd-rich-item-renderer[is-shorts] {
+        border-radius: 16px;
+        overflow: hidden;
+    }
+    ytd-rich-item-renderer[is-shorts]:hover {
+        box-shadow: 0 0 0 2px #9b1d2c, 0 8px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    /* 14. Анимация для иконки «меню» (три точки) при наведении */
+    yt-icon-button#button yt-icon,
+    ytd-menu-renderer yt-icon {
+        transition: transform 0.2s ease;
+    }
+    yt-icon-button#button:hover yt-icon,
+    ytd-menu-renderer:hover yt-icon {
+        transform: rotate(90deg);
+    }
+
+    /* 15. Делаем фон шапки чуть прозрачным (glass effect) */
+    ytd-masthead {
+        backdrop-filter: blur(8px);
+        background-color: rgba(10, 10, 15, 0.8) !important;
+    }
+    /* =========================================
+   ДОПОЛНИТЕЛЬНЫЕ УЛУЧШЕНИЯ ДЛЯ YOUTUBE
+   ========================================= */
+    /* 3. Цвет выделения текста (бордовый с белым) */
+    ::selection {
+        background: #9b1d2c;
+        color: white;
+    }
+    ::-moz-selection {
+        background: #9b1d2c;
+        color: white;
+    }
+
+    /* 4. Анимация для кнопки "Показать ещё" в комментариях (плавное раскрытие) */
+    ytd-expander #more,
+    ytd-expander #less {
+        transition: all 0.2s ease;
+    }
+    ytd-expander[collapsed] #content {
+        transition: max-height 0.3s ease-out;
+    }
+
+    /* 5. Скрытие кнопки "Купить" на каналах (если есть) */
+    #purchase-button,
+    #buy-button,
+    ytd-merch-shelf-renderer {
+        display: none !important;
+    }
+
+    /* 6. Кастомный индикатор загрузки видео (спиннер) – бордовый */
+    tp-yt-paper-spinner .spinner-layer .circle {
+        border-color: #9b1d2c !important;
+    }
+    .ytp-spinner .ytp-spinner-container .ytp-spinner-rotator {
+        border-color: #9b1d2c !important;
+    }
+
+    /* 7. Эффект «неона» для кнопки лайка при клике (временное свечение) */
+    ytd-toggle-button-renderer[like-button]:active {
+        animation: neonGlow 0.3s ease-out;
+    }
+    @keyframes neonGlow {
+        0% {
+            text-shadow: 0 0 0 #9b1d2c;
+        }
+        50% {
+            text-shadow: 0 0 8px #9b1d2c, 0 0 12px #b82e3f;
+        }
+        100% {
+            text-shadow: 0 0 0 #9b1d2c;
+        }
+    }
+
+    /* 8. Изменение формы кнопок (сильное скругление) */
+    button,
+    .yt-spec-button-shape-next,
+    ytd-button-renderer,
+    ytd-toggle-button-renderer {
+        border-radius: 28px !important;
+    }
+    .yt-spec-button-shape-next--size-m {
+        border-radius: 28px !important;
+    }
+
+    /* 9. Анимация для иконки подписки (звёздочка/сердечко) – пульсация */
+    ytd-subscribe-button-renderer button:active {
+        animation: pulseHeart 0.3s ease;
+    }
+    @keyframes pulseHeart {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.2);
+            background-color: #c1273b;
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* 10. Тёмный режим для страницы истории просмотров */
+    ytd-video-history,
+    ytd-history-page {
+        background: #0a0a0f !important;
+    }
+
+    /* 11. Кастомный курсор при наведении на видео (бордовый указатель) */
+    ytd-rich-item-renderer #thumbnail,
+    ytd-compact-video-renderer #thumbnail,
+    ytd-playlist-panel-video-renderer #thumbnail {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="%239b1d2c"><path d="M5 3h14v2H5V3zm0 4h14v2H5V7zm0 4h10v2H5v-2zm13 0h2v2h-2v-2zm-3 4h-2v2h-2v2h-2v2h6v-6z"/></svg>') 10 10, auto;
+    }
+
+    /* 12. Замена стандартного плейлиста в правой панели – фон, границы, шрифт */
+    ytd-playlist-panel-renderer {
+        background: #12101a !important;
+        border-left: 1px solid #2a1f2a !important;
+    }
+    ytd-playlist-panel-renderer .title {
+        color: #e0e0f0 !important;
+    }
+    ytd-playlist-panel-video-renderer:hover {
+        background: #1e1828 !important;
+    }
+
+
+    /* 14. Анимация для полосы прокрутки (плавное появление) */
+    ::-webkit-scrollbar-thumb {
+        transition: background 0.2s;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #b82e3f !important;
+    }
+
+    /* 15. Изменение внешнего вида переключателей (toggle) в настройках – бордовые */
+    paper-toggle-button[checked] .toggle-bar {
+        background-color: #9b1d2c !important;
+    }
+    paper-toggle-button[checked] .toggle-button {
+        background-color: #b82e3f !important;
+    }
+
+    /* 19. Анимация для кнопки "Показать ещё" (плавное изменение прозрачности) */
+    #continuations ytd-button-renderer button,
+    #message ytd-button-renderer button {
+        transition: opacity 0.2s, transform 0.2s;
+    }
+    #continuations ytd-button-renderer button:hover,
+    #message ytd-button-renderer button:hover {
+        opacity: 0.9;
+        transform: scale(1.02);
+    }
+    /* Переопределяем переменную, которая задаёт фон поля поиска */
+    :root,
+    html[dark],
+    ytd-masthead {
+        --t518e925f61bdcb91: transparent !important;
+    }
+
+    /* Само поле ввода – принудительно прозрачный фон */
+    .ytSearchboxComponentInputBox,
+    .ytSearchboxComponentInputBoxDark {
+        background: transparent !important;
+        background-color: transparent !important;
+        background-image: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Бордовая обводка (опционально) */
+    .ytSearchboxComponentInputBox,
+    .ytSearchboxComponentInputBoxDark {
+        border-color: #9b1d2c !important;
+        border-width: 1px !important;
+        border-style: solid !important;
+        border-right: none !important;
+    }
+
+    /* При фокусе – нижняя граница (опционально) */
+    .ytSearchboxComponentInputBox:focus-within,
+    .ytSearchboxComponentInputBoxDark:focus-within {
+        border-bottom-color: #b82e3f !important;
+        border-bottom-width: 2px !important;
+    }
+    /* Убираем всю обводку, оставляем только прозрачный фон */
+    .ytSearchboxComponentInputBox,
+    .ytSearchboxComponentInputBoxDark {
+        background: transparent !important;
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    /* При фокусе (активном поле) – добавляем нижнюю бордовую линию */
+    .ytSearchboxComponentInputBox:focus-within,
+    .ytSearchboxComponentInputBoxDark:focus-within {
+        border-bottom: 2px solid #9b1d2c !important;
+        border-radius: 0 !important;
+    }
+    /* Поле поиска – убираем обводку, делаем прозрачным */
+    .ytSearchboxComponentInputBox,
+    .ytSearchboxComponentInputBoxDark {
+        background: transparent !important;
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+        transition: all 0.2s ease-in-out !important;
+    }
+
+    /* Создаём псевдоэлемент для нижней линии (чтобы анимировать ширину) */
+    .ytSearchboxComponentInputBox {
+        position: relative;
+    }
+    .ytSearchboxComponentInputBox::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #9b1d2c;
+        transition: width 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        pointer-events: none;
+    }
+
+    /* При фокусе – линия расширяется на всю ширину */
+    .ytSearchboxComponentInputBox:focus-within::after {
+        width: 100%;
+    }
+    /* Плавное появление карточек видео */
+    ytd-rich-item-renderer {
+        animation: fadeSlideUp 0.4s ease-out;
+    }
+    @keyframes fadeSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Плавное изменение цвета кнопки подписки */
+    ytd-subscribe-button-renderer button {
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s !important;
+    }
+    ytd-subscribe-button-renderer button:hover {
+        transform: scale(1.02);
+        box-shadow: 0 2px 8px rgba(155, 29, 44, 0.4);
+    }
+
+    /* Плавное появление комментариев */
+    ytd-comment-thread-renderer {
+        animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Плавная прокрутка для всей страницы (опционально) */
+    html {
+        scroll-behavior: smooth;
+    }
+    /* =========================================
+   ДОПОЛНИТЕЛЬНЫЕ АНИМАЦИИ ДЛЯ YOUTUBE
+   ========================================= */
+    /* 1. Плавное появление кнопки "Показать ещё" */
+    #continuations ytd-button-renderer button,
+    #message ytd-button-renderer button {
+        transition: opacity 0.2s, transform 0.2s;
+    }
+    #continuations ytd-button-renderer button:hover,
+    #message ytd-button-renderer button:hover {
+        opacity: 0.9;
+        transform: scale(1.02);
+    }
+
+    /* 2. Анимация для иконки лайка при клике */
+    ytd-toggle-button-renderer[like-button]:active yt-icon,
+    ytd-toggle-button-renderer[dislike-button]:active yt-icon {
+        animation: pulse 0.2s cubic-bezier(0.2, 1.2, 0.4, 1);
+    }
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.3);
+            color: #9b1d2c;
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* 3. Плавное изменение прозрачности шапки при скролле (эффект glass) */
+    ytd-masthead {
+        transition: background 0.3s, backdrop-filter 0.3s;
+    }
+    ytd-masthead[scrolled] {
+        backdrop-filter: blur(8px);
+        background-color: rgba(10, 10, 15, 0.8) !important;
+    }
+
+    /* 4. Анимация для превью видео при наведении */
+    ytd-rich-item-renderer #thumbnail {
+        transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.25s;
+    }
+    ytd-rich-item-renderer:hover #thumbnail {
+        transform: scale(1.03);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 5. Плавное появление блока рекомендаций (справа) */
+    #secondary ytd-compact-video-renderer,
+    #secondary ytd-compact-radio-renderer {
+        animation: slideInRight 0.3s ease;
+    }
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    /* =========================================
+   ИСПРАВЛЕНИЕ ФОНА ПЛЕЙЛИСТА (свёрнутый режим)
+   ========================================= */
+    /* Переопределяем фон заголовка плейлиста */
+    .header.ytd-playlist-panel-renderer,
+    ytd-playlist-panel-renderer[collapsible][collapsed] .header.ytd-playlist-panel-renderer {
+        background-color: #12101a !important;
+        background: #12101a !important;
+    }
+
+    /* Переопределяем переменную, которая может влиять */
+    ytd-playlist-panel-renderer[use-color-palette][is-dark-theme] {
+        --yt-active-playlist-panel-background-color: #12101a !important;
+        --yt-lightsource-section2-color: #12101a !important;
+    }
+
+    /* =========================================
+   ЛЕВОЕ МЕНЮ (прозрачное)
+   ========================================= */
+    ytd-guide-renderer,
+    #guide-renderer,
+    #sections,
+    ytd-app ytd-guide-renderer,
+    ytd-guide-renderer #sections {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+
+    /* Контейнер внутри меню */
+    #guide-content,
+    #guide-inner-content {
+        background: transparent !important;
+    }
+
+    /* Сами пункты меню – фон только при наведении */
+    ytd-guide-entry-renderer {
+        background: transparent !important;
+    }
+    ytd-guide-entry-renderer:hover {
+        background: #1e1828 !important;
+        border-radius: 12px !important;
+    }
+
+    /* =========================================
+   АНИМАЦИЯ ДЛЯ ВСЕХ ВИДЕО В ПРАВОЙ КОЛОНКЕ (рекомендации)
+   ========================================= */
+    /* Правая колонка – блок всей карточки (картинка + текст) */
+    .ytLockupViewModelHost {
+        transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1) !important;
+        border-radius: 16px !important;
+    }
+
+    /* При наведении – фон, лёгкое смещение, тень */
+    .ytLockupViewModelHost:hover {
+        background: #1e1828 !important;
+        transform: translateX(4px) scale(1.01) !important;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    /* Необязательно – подсветка заголовка */
+    .ytLockupViewModelHost:hover .ytLockupViewModelMetadata #video-title,
+    .ytLockupViewModelHost:hover .ytLockupViewModelMetadata [id*="title"] {
+        color: #9b1d2c !important;
+    }
+    /* Скрываем стандартный логотип */
+    ytd-logo .yt-icon,
+    ytd-logo svg {
+        display: none !important;
+    }
+
+    /* Добавляем свою картинку через псевдоэлемент */
+    ytd-logo {
+        position: relative;
+        display: inline-block;
+        width: 100px;
+        /* подбери под размер твоей картинки */
+        height: 30px;
+    }
+    ytd-logo::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://i.ibb.co/7mBSxhC/LOGO.png') no-repeat center / contain;
+        background-size: contain;
+    }
+    /* =========================================
+   ДОПОЛНИТЕЛЬНЫЕ АНИМАЦИИ
+   ========================================= */
+    /* 1. Анимация кнопки "Нравится" (лайк) */
+    ytd-toggle-button-renderer[like-button] {
+        transition: transform 0.15s cubic-bezier(0.2, 0.9, 0.4, 1.1) !important;
+    }
+    ytd-toggle-button-renderer[like-button]:active {
+        transform: scale(1.2) !important;
+    }
+    ytd-toggle-button-renderer[like-button][aria-pressed="true"] {
+        animation: likePulse 0.3s ease;
+    }
+    @keyframes likePulse {
+        0% {
+            transform: scale(1);
+        }
+        40% {
+            transform: scale(1.3);
+            color: #9b1d2c;
+        }
+        70% {
+            transform: scale(0.95);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* 2. Плавное появление левого меню (при открытии) */
+    ytd-guide-renderer[guide-persistent-and-visible] {
+        animation: slideInLeft 0.25s ease-out;
+    }
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* 3. Анимация для элементов при скролле (появление снизу) */
+    .ytd-rich-item-renderer,
+    .ytd-video-renderer,
+    .ytd-compact-video-renderer {
+        animation: fadeInUp 0.4s ease-out;
+        animation-fill-mode: backwards;
+    }
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Задержка для элементов сетки (каскадное появление) */
+    .ytd-rich-item-renderer:nth-child(1) {
+        animation-delay: 0.02s;
+    }
+    .ytd-rich-item-renderer:nth-child(2) {
+        animation-delay: 0.04s;
+    }
+    .ytd-rich-item-renderer:nth-child(3) {
+        animation-delay: 0.06s;
+    }
+    .ytd-rich-item-renderer:nth-child(4) {
+        animation-delay: 0.08s;
+    }
+    .ytd-rich-item-renderer:nth-child(5) {
+        animation-delay: 0.10s;
+    }
+    .ytd-rich-item-renderer:nth-child(6) {
+        animation-delay: 0.12s;
+    }
+
+    /* 4. Пульсация для иконки уведомлений (колокольчик) */
+    ytd-notification-topbar-button-renderer yt-icon {
+        transition: transform 0.2s ease;
+    }
+    ytd-notification-topbar-button-renderer:hover yt-icon {
+        transform: rotate(15deg) scale(1.05);
+    }
+    ytd-notification-topbar-button-renderer yt-icon:active {
+        animation: bellRing 0.3s ease;
+    }
+    @keyframes bellRing {
+        0% {
+            transform: rotate(0deg);
+        }
+        25% {
+            transform: rotate(15deg);
+        }
+        50% {
+            transform: rotate(-15deg);
+        }
+        75% {
+            transform: rotate(8deg);
+        }
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+
+    /* 5. Плавное изменение громкости при наведении на ползунок */
+    .ytp-volume-panel:hover .ytp-volume-slider-handle {
+        transition: all 0.15s ease;
+        transform: scale(1.2);
+        background: #9b1d2c !important;
+    }
+    /* =========================================
+   ДОПОЛНИТЕЛЬНЫЕ АНИМАЦИИ И АКЦЕНТНАЯ ОБВОДКА
+   ========================================= */
+    /* 1. Глобальные плавные переходы для всех интерактивных элементов */
+    button,
+    .yt-spec-button-shape-next,
+    ytd-button-renderer,
+    ytd-toggle-button-renderer,
+    yt-icon-button,
+    #button,
+    .ytp-button,
+    .ytp-play-button,
+    .ytp-next-button,
+    .ytp-prev-button,
+    .ytp-volume-button,
+    .ytp-fullscreen-button,
+    ytd-guide-entry-renderer,
+    ytd-compact-video-renderer,
+    .ytLockupViewModelHost,
+    #video-title,
+    .ytd-channel-name a,
+    .ytd-video-owner-renderer a,
+    .ytd-comment-renderer,
+    tp-yt-paper-button,
+    .ytp-chrome-button {
+        transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1) !important;
+    }
+
+    /* 3. Эффект «ряби» при клике (для кнопок) */
+    .yt-spec-button-shape-next,
+    ytd-button-renderer button,
+    ytd-toggle-button-renderer button,
+    yt-icon-button button,
+    .ytp-button {
+        position: relative;
+        overflow: hidden;
+    }
+    .yt-spec-button-shape-next:active::after,
+    ytd-button-renderer button:active::after,
+    ytd-toggle-button-renderer button:active::after,
+    yt-icon-button button:active::after,
+    .ytp-button:active::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(155, 29, 44, 0.5) 10%, transparent 80%);
+        transform: translate(-50%, -50%) scale(0);
+        animation: rippleEffect 0.5s ease-out;
+        pointer-events: none;
+    }
+    @keyframes rippleEffect {
+        to {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0;
+        }
+    }
+
+    /* 4. Анимация для кнопки "Подписаться" (пульсация) */
+    ytd-subscribe-button-renderer button {
+        transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1) !important;
+        animation: subtlePulse 2s infinite;
+    }
+    @keyframes subtlePulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(155, 29, 44, 0);
+        }
+        70% {
+            box-shadow: 0 0 0 6px rgba(155, 29, 44, 0.2);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(155, 29, 44, 0);
+        }
+    }
+    ytd-subscribe-button-renderer button:hover {
+        animation: none;
+        transform: scale(1.02);
+        background-color: #b82e3f !important;
+    }
+
+    /* 5. Анимация для иконки лайка/дизлайка (всплеск) */
+    ytd-toggle-button-renderer[like-button]:active yt-icon,
+    ytd-toggle-button-renderer[dislike-button]:active yt-icon {
+        animation: likePop 0.2s cubic-bezier(0.2, 1.2, 0.4, 1);
+    }
+    @keyframes likePop {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.3);
+            color: #9b1d2c;
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* 6. Анимация для поля поиска (нижняя линия при фокусе) – улучшенная */
+    .ytSearchboxComponentInputBox:focus-within::after {
+        width: 100%;
+        background-color: #9b1d2c;
+        transition: width 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .ytSearchboxComponentInputBox::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #9b1d2c;
+        transition: width 0.3s ease;
+        pointer-events: none;
+    }
+
+    /* 7. Анимация для гамбургер-меню (выезжание) – при клике не получится через CSS,
+   но можно анимировать иконку при наведении */
+    #guide-button yt-icon,
+    .yt-icon-button yt-icon {
+        transition: transform 0.2s ease;
+    }
+    #guide-button:hover yt-icon,
+    .yt-icon-button:hover yt-icon {
+        transform: scale(1.1);
+    }
+
+    /* 8. Анимация для тултипов (подсказки) – плавное появление */
+    tp-yt-paper-tooltip {
+        transition: opacity 0.2s, transform 0.2s !important;
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    tp-yt-paper-tooltip[show] {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* 9. Анимация для иконок в шапке (колокольчик, аватар) при наведении */
+    ytd-masthead .yt-icon-button yt-icon {
+        transition: transform 0.2s ease;
+    }
+    ytd-masthead .yt-icon-button:hover yt-icon {
+        transform: scale(1.1);
+    }
+
+    /* 10. Анимация для карточек видео в ленте (уже есть, добавим более плавную) */
+    ytd-rich-item-renderer {
+        transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1) !important;
+    }
+    ytd-rich-item-renderer:hover {
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    /* 11. Анимация для кнопок в плеере (play/pause, fullscreen и т.д.) при наведении */
+    .ytp-button {
+        transition: transform 0.2s, opacity 0.2s !important;
+    }
+    .ytp-button:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+    .ytp-button:active {
+        transform: scale(0.95);
+    }
+
+    /* 12. Анимация для кнопки "Ещё" (три точки) */
+    yt-icon-button#button yt-icon,
+    ytd-menu-renderer yt-icon {
+        transition: transform 0.2s ease;
+    }
+    yt-icon-button#button:hover yt-icon,
+    ytd-menu-renderer:hover yt-icon {
+        transform: rotate(90deg);
+    }
+
+    /* 13. Анимация для разделов комментариев при прокрутке (появление) */
+    ytd-comment-thread-renderer {
+        animation: fadeInUp 0.4s ease-out;
+    }
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    /* =========================================
+       ПОЛНОСТЬЮ УБИРАЕМ ОБВОДКУ С НЕНУЖНЫХ ЭЛЕМЕНТОВ
+    ========================================= */
+
+    /* 1. Все кнопки в комментариях */
+    ytd-comment-renderer button,
+    ytd-comment-renderer yt-icon-button,
+    ytd-comment-action-buttons-renderer button,
+    ytd-comment-action-buttons-renderer yt-icon-button,
+    #comment-menu button,
+    #sort-menu button,
+    ytd-menu-renderer button,
+    ytd-menu-renderer yt-icon-button,
+    [aria-label*="Упорядочить"],
+    [aria-label*="Ответить"],
+    [aria-label*="Нравится"][aria-label*="комментарий"],
+    [aria-label*="Не нравится"][aria-label*="комментарий"],
+    .comment-action-buttons-renderer button {
+        outline: none !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* 2. Все кнопки в плеере (пауза, далее/назад, громкость, fullscreen и т.д.) */
+    .ytp-button,
+    .ytp-play-button,
+    .ytp-next-button,
+    .ytp-prev-button,
+    .ytp-volume-button,
+    .ytp-settings-button,
+    .ytp-fullscreen-button,
+    .ytp-miniplayer-button,
+    .ytp-size-button,
+    button[class*="ytp-"],
+    .ytp-chrome-button,
+    .ytp-chrome-button > button {
+        outline: none !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* 3. Поле поиска (строка ввода) – убираем любую обводку и рамку */
+    #search-input,
+    .ytd-searchbox,
+    input#search,
+    .ytSearchboxComponentInputBox,
+    .ytSearchboxComponentInputBoxDark,
+    [slot="search-input"],
+    .ytd-searchbox-input {
+        outline: none !important;
+        border: none !important;
+        border-bottom: none !important;
+        box-shadow: none !important;
+    }
+
+    /* =========================================
+       ДОБАВЛЯЕМ ОБВОДКУ КНОПКЕ ПОИСКА И УВЕДОМЛЕНИЙ
+    ========================================= */
+
+    /* Кнопка поиска (лупа) */
+    #search-icon-legacy,
+    .ytd-searchbox .search-button,
+    button[aria-label="Поиск"],
+    ytd-searchbox #search-icon-legacy {
+        outline: 1px solid #9b1d2c !important;
+        outline-offset: -1px !important;
+        border-radius: 20px !important;
+        border: none !important;
+        transition: outline-color 0.2s ease !important;
+    }
+    #search-icon-legacy:hover {
+        outline-color: #b82e3f !important;
+    }
+
+    /* Кнопка уведомлений (колокольчик) */
+    ytd-notification-topbar-button-renderer button,
+    #notification-button button,
+    [aria-label="Уведомления"],
+    ytd-notification-topbar-button-renderer yt-icon-button {
+        outline: 1px solid #9b1d2c !important;
+        outline-offset: -1px !important;
+        border-radius: 24px !important;
+        border: none !important;
+        transition: outline-color 0.2s ease !important;
+    }
+    ytd-notification-topbar-button-renderer button:hover {
+        outline-color: #b82e3f !important;
+    }
+    /* =========================================
+       ОБВОДКА ТОЛЬКО ДЛЯ УКАЗАННЫХ КНОПОК (точные селекторы)
+    ========================================= */
+
+    /* 1. Кнопка поиска в шапке */
+    .ytSearchboxComponentSearchButton,
+    .ytSearchboxComponentSearchButtonDark,
+    button.ytSearchboxComponentSearchButton {
+        outline: 1px solid #9b1d2c !important;
+        outline-offset: -1px !important;
+        border-radius: 20px !important;
+        transition: outline-color 0.2s ease !important;
+    }
+
+    /* 2. Кнопка "Создать" (в шапке) */
+    ytd-create-navigation-button-renderer button,
+    #create-button button,
+    [aria-label="Создать"] {
+        outline: 1px solid #9b1d2c !important;
+        outline-offset: -1px !important;
+        border-radius: 28px !important;
+    }
+
+    /* 3. Кнопка голосового ввода (микрофон) */
+    #voice-search-button,
+    button[aria-label*="голосовой"],
+    button[aria-label*="Voice search"] {
+        outline: 1px solid #9b1d2c !important;
+        outline-offset: -1px !important;
+        border-radius: 24px !important;
+    }
+    /* 4. Кнопка полноэкранного режима (fullscreen) – круглая обводка */
+    .ytp-fullscreen-button,
+    button.ytp-fullscreen-button {
+        outline: 1px solid #9b1d2c !important;
+        outline-offset: -1px !important;
+        border-radius: 50% !important;  /* круглая рамка */
+        transition: outline-color 0.2s ease !important;
+    }
+
+    /* 5. Кнопка широкого экрана (theater mode) – круглая обводка */
+    .ytp-size-button,
+    button.ytp-size-button {
+        outline: 1px solid #9b1d2c !important;
+        outline-offset: -1px !important;
+        border-radius: 50% !important;
+    }
+
+    /* 6. Кнопка "Настройки" (шестерёнка) – круглая обводка */
+    .ytp-settings-button,
+    button.ytp-settings-button {
+        outline: 1px solid #9b1d2c !important;
+        outline-offset: -1px !important;
+        border-radius: 50% !important;
+    }
+
+    /* 7. Кнопка "Субтитры" – круглая обводка */
+    .ytp-subtitles-button,
+    button.ytp-subtitles-button {
+        outline: 1px solid #9b1d2c !important;
+        outline-offset: -1px !important;
+        border-radius: 50% !important;
+    }
+
+    /* При наведении – чуть светлее (опционально) */
+    .ytSearchboxComponentSearchButton:hover,
+    .ytp-fullscreen-button:hover,
+    .ytp-size-button:hover,
+    .ytp-settings-button:hover,
+    .ytp-subtitles-button:hover {
+        outline-color: #b82e3f !important;
+    }
+    /* =========================================
+       АКЦЕНТНЫЙ ЦВЕТ ДЛЯ ССЫЛОК В ОПИСАНИИ ВИДЕО
+    ========================================= */
+
+    /* Все ссылки в описании (обычные, посещённые, активные) */
+    ytd-video-secondary-info-renderer a,
+    ytd-description-renderer a,
+    ytd-description-renderer yt-attributed-string a,
+    #description a,
+    #description yt-formatted-string a,
+    ytd-expander a,
+    ytd-text-inline-expander a,
+    .ytd-description-renderer a,
+    .yt-simple-endpoint[href*="http"]:not([href*="youtube.com"]) {
+        color: #e06c7e !important;  /* более светлый бордовый для читаемости */
+        border-bottom: 1px dashed #9b1d2c !important;
+        transition: all 0.2s ease !important;
+    }
+
+    /* При наведении – более насыщенный цвет и сплошная линия */
+    ytd-video-secondary-info-renderer a:hover,
+    ytd-description-renderer a:hover,
+    #description a:hover,
+    ytd-expander a:hover {
+        color: #ff8a9f !important;
+        border-bottom: 1px solid #9b1d2c !important;
+    }
+    /* =========================================
+       ПРОЗРАЧНЫЙ ФОН ДЛЯ КНОПОК В ШАПКЕ
+    ========================================= */
+
+    /* 1. Кнопка поиска */
+    .ytSearchboxComponentSearchButton,
+    .ytSearchboxComponentSearchButtonDark,
+    button.ytSearchboxComponentSearchButton {
+        background: transparent !important;
+        background-color: transparent !important;
+        fill: currentColor !important;
+    }
+
+    /* 2. Кнопка голосового ввода */
+    #voice-search-button,
+    button#voice-search-button {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+
+    /* 3. Кнопка "Создать" (несколько возможных селекторов) */
+    ytd-create-navigation-button-renderer button,
+    #create-button button,
+    ytd-create-navigation-button-renderer yt-icon-button,
+    [aria-label="Создать"],
+    [aria-label="Create"] {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+    /* =========================================
+       НЕОНОВОЕ СВЕЧЕНИЕ ЛОГОТИПА (ваша картинка)
+    ========================================= */
+    /* Применяем свечение к контейнеру с вашим логотипом */
+    ytd-logo {
+        filter: drop-shadow(0 0 5px #b82e3f) drop-shadow(0 0 5px #b82e3f) drop-shadow(0 0 15px rgba(184, 46, 63, 0.9));
+        transform: scale(1.02);
+        transition: all 0.2s ease;
+    }
+
+}
